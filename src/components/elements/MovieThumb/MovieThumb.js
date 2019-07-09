@@ -6,7 +6,7 @@ import './MovieThumb.css';
 const MovieThumb = ({ clickable, image, movieId, movieName }) => (
 	<div className="rmdb-moviethumb">
 		{clickable ? (
-			<Link to={{ pathname: `/${movieId}`, movieName: `${movieName}` }}>
+			<Link className="clickable" to={{ pathname: `/${movieId}`, movieName: `${movieName}` }}>
 				<img src={image} alt="Movie Thumb" />
 			</Link>
 		) : (
