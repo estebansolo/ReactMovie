@@ -44,7 +44,6 @@ const MovieInfo = (props) => (
 					);
 				})}
 			</div>
-			<FontAwesome className="fa-film" name="film" size="5x" />
 		</div>
 	</div>
 );

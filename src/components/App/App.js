@@ -11,7 +11,7 @@ const App = () => {
 			<Header />
 			<Switch>
 				<Route path="/" component={Home} exact />
-				<Route path="/:movieId" component={Movie} exact />
+				<Route path="/:type/:id" component={Movie} exact />
 				<Route component={NotFound} />
 			</Switch>
 		</React.Fragment>

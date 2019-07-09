@@ -4,6 +4,7 @@ import { API_URL, API_KEY } from '../../config';
 export const useFetchMovies = () => {
 	const [ isLoading, setIsLoading ] = useState(false);
 	const [ isError, setIsError ] = useState(false);
+	const [ type, setType ] = useState('movie');
 	const [ state, setState ] = useState({
 		movies: [],
 		heroImage: null,
@@ -17,8 +18,8 @@ export const useFetchMovies = () => {
 			? state.currentPage + 1
 			: 1}&query=${searchTerm}`;
 
-	const searchEP = curriedEndpoint('search/movie');
-	const popularEP = curriedEndpoint('movie/popular');
+	const searchEP = curriedEndpoint(`search/${type}`);
+	const popularEP = curriedEndpoint(`${type}/popular`);
 
 	const fetchItems = async (endpoint) => {
 		setIsError(false);
@@ -26,6 +27,7 @@ export const useFetchMovies = () => {
 
 		try {
 			const result = await (await fetch(endpoint)).json();
+			console.log(result);
 
 			setState((prev) => ({
 				...prev,
@@ -45,6 +47,10 @@ export const useFetchMovies = () => {
 		setIsLoading(false);
 	};
 
+	const changeType = (newType) => {
+		setType(newType);
+	};
+
 	const updateItems = (loadMore, searchTerm) => {
 		loadMore = loadMore === undefined ? true : loadMore;
 
@@ -60,8 +66,9 @@ export const useFetchMovies = () => {
 
 	//
 	useEffect(() => {
-		if (sessionStorage.getItem('HomeState')) {
-			const storageState = JSON.parse(sessionStorage.getItem('HomeState'));
+		if (localStorage.getItem('HomeState')) {
+			const storageState = JSON.parse(localStorage.getItem('HomeState'));
+			setType(localStorage.getItem('HomeType'));
 			setState({ ...storageState });
 		} else {
 			fetchItems(popularEP(false)(''));
@@ -70,10 +77,18 @@ export const useFetchMovies = () => {
 
 	useEffect(
 		() => {
-			sessionStorage.setItem('HomeState', JSON.stringify(state));
+			localStorage.setItem('HomeState', JSON.stringify(state));
 		},
 		[ state ]
 	);
 
-	return [ { state, isLoading, isError }, updateItems ];
+	useEffect(
+		() => {
+			localStorage.setItem('HomeType', type);
+			updateItems(false, state.searchTerm);
+		},
+		[ type ]
+	);
+
+	return [ { state, isLoading, isError, type }, updateItems, changeType ];
 };

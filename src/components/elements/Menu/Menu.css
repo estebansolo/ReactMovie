@@ -1,0 +1,59 @@
+.rmdb-menu {
+	width: 100%;
+	background: #1c1c1c;
+	padding: 0 20px;
+	padding-bottom: 10px;
+	box-sizing: border-box;
+}
+
+.rmdb-menu-content {
+	max-width: 1280px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin: 0 auto;
+	box-sizing: border-box;
+}
+
+.rmdb-menu-content-links {
+	display: flex;
+	justify-content: space-between;
+	align-items: start;
+	width: 180px;
+}
+
+.rmdb-menu-link {
+	border: 0;
+	background-color: transparent;
+	color: #fff;
+	font-family: 'Abel', sans-serif;
+	font-size: 25px;
+	cursor: pointer;
+	box-sizing: border-box;
+}
+
+.rmdb-menu-link:hover,
+.rmdb-menu-link.active {
+	color: #ccc;
+	border-bottom: 3px solid #ccc;
+	box-sizing: border-box;
+}
+
+.rmdb-menu-link:focus {
+	outline: none;
+}
+
+.rmdb-menu-content-search {
+	width: 500px;
+}
+
+@media screen and (max-width: 740px) {
+	.rmdb-menu-content {
+		flex-direction: column;
+	}
+
+	.rmdb-menu-content-search {
+		width: 100%;
+		margin-top: 15px;
+	}
+}
