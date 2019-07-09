@@ -31,7 +31,7 @@ class Movie extends React.Component {
 	fetchData = async (endpoint) => {
 		try {
 			let result = await (await fetch(endpoint)).json();
-
+console.log(result)
 			if (result.status_code) {
 				this.setState({ loading: false });
 			} else {
