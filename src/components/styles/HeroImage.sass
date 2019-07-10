@@ -1,0 +1,49 @@
+.rmdb-heroimage
+	background-size: 100%, cover !important
+	background-position: center, center !important
+	width: 100%
+	height: 500px
+	position: relative
+	animation: animateHeroimage 1s
+
+@keyframes animateHeroimage
+	0%
+		opacity: 0
+	100%
+		opacity: 1
+
+.rmdb-heroimage-content
+	max-width: 1280px
+	padding: 20px
+	margin: 0 auto
+
+.rmdb-heroimage-text
+	z-index: 100
+	max-width: 700px
+	position: absolute
+	bottom: 20px
+	margin-right: 20px
+	min-height: 100px
+	background: rgba(0, 0, 0, 0.0)
+	color: #fff
+
+.rmdb-heroimage-text h1
+	font-size: 48px
+
+.rmdb-heroimage-text p
+	font-size: 22px
+	line-height: 24px
+
+@media screen and (max-width: 770px)
+	.rmdb-heroimage
+		min-height: 350px
+
+	.rmdb-heroimage-text
+		max-width: 100%
+
+	.rmdb-heroimage-text h1
+		font-size: 38px
+
+	.rmdb-heroimage-text p
+		font-size: 16px
+		line-height: 20px
