@@ -1,20 +1,14 @@
 .rmdb-menu
 	width: 100%
-	background: #1c1c1c
-	padding: 0 20px
+	background: $bgcolor
 	padding-bottom: 10px
 
 .rmdb-menu-content
-	max-width: 1280px
-	display: flex
-	justify-content: space-between
-	align-items: center
-	margin: 0 auto
+	@include center-between
+	padding: 0
 
 .rmdb-menu-content-links
-	display: flex
-	justify-content: space-between
-	align-items: start
+	@include center-between
 	width: 180px
 
 .rmdb-menu-link
@@ -34,11 +28,3 @@
 
 .rmdb-menu-content-search
 	width: 500px
-
-@media screen and (max-width: 740px)
-	.rmdb-menu-content
-		flex-direction: column
-
-	.rmdb-menu-content-search
-		width: 100%
-		margin-top: 15px

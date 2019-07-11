@@ -1,15 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './styles/Header.sass';
+import rmdb_logo from '../static/images/rmdb_logo.png';
+import tmdb_logo from '../static/images/tmdb_logo.png';
 
 const Header = () => (
 	<div className="rmdb-header">
-		<div className="rmdb-header-content">
+		<div className="container rmdb-header-content">
 			<Link to="/">
-				<img src="./images/reactMovie_logo.png" alt="RMDB Logo" className="rmdb-logo" />
+				<img src={rmdb_logo} alt="RMDB Logo" className="rmdb-logo" />
 			</Link>
 			<a href="https://www.themoviedb.org/" target="_blank" rel="noopener noreferrer">
-				<img src="./images/tmdb_logo.png" alt="TMDB Logo" className="rmdb-tmdb-logo" />
+				<img src={tmdb_logo} alt="TMDB Logo" className="rmdb-tmdb-logo" />
 			</a>
 		</div>
 	</div>

@@ -1,4 +1,5 @@
 import { IMAGE_BASE_URL, POSTER_SIZE } from './config';
+import no_image from '../static/images/no_image.jpg';
 
 // Convert time to hours and minutes
 export const calcTime = (time) => {
@@ -18,5 +19,5 @@ export const convertMoney = (money) => {
 };
 
 export const getImageUrl = (path) => {
-	return path ? `${IMAGE_BASE_URL}${POSTER_SIZE}${path}` : './images/no_image.jpg';
+	return path ? `${IMAGE_BASE_URL}${POSTER_SIZE}${path}` : no_image;
 };

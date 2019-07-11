@@ -1,11 +1,10 @@
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import { calcTime, convertMoney } from '../global/helpers';
-import './styles/MovieInfoBar.sass';
 
 const MovieInfoBar = ({ movie }) => (
 	<div className="rmdb-movieinfobar">
-		<div className="rmdb-movieinfobar-content">
+		<div className="container rmdb-movieinfobar-content">
 			{movie.runtime && (
 				<React.Fragment>
 					<div className="rmdb-movieinfobar-content-col">

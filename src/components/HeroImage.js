@@ -1,5 +1,4 @@
 import React from 'react';
-import './styles/HeroImage.sass';
 
 const HeroImage = (props) => (
 	<div
@@ -12,7 +11,7 @@ const HeroImage = (props) => (
 				url('${props.image}'), #1c1c1c`
 		}}
 	>
-		<div className="rmdb-heroimage-content">
+		<div className="container rmdb-heroimage-content">
 			<div className="rmdb-heroimage-text">
 				<h1>{props.title}</h1>
 				<p>{props.text}</p>

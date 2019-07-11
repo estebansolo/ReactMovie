@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { API_URL, API_KEY, IMAGE_BASE_URL, POSTER_SIZE } from '../global/config';
+import { getImageUrl } from '../global/helpers';
 import Navigation from '../components/Navigation';
 import MovieInfo from '../components/MovieInfo';
 import MovieThumb from '../components/MovieThumb';
@@ -7,7 +8,6 @@ import MovieInfoBar from '../components/MovieInfoBar';
 import FourColGrid from '../components/FourColGrid';
 import Actor from '../components/Actor';
 import Spinner from '../components/Spinner';
-import './styles/Movie.sass';
 
 const Movie = (props) => {
 	const [ state, setState ] = useState({
@@ -73,14 +73,14 @@ const Movie = (props) => {
 				</div>
 			) : null}
 			{state.actors.cast && state.actors.cast.length > 0 ? (
-				<div className="rmdb-movie-grid">
+				<div className="container rmdb-movie-grid">
 					<FourColGrid header={'Main Actors'}>
 						{state.actors.cast.slice(0, 12).map((element, i) => <Actor key={i} actor={element} />)}
 					</FourColGrid>
 				</div>
 			) : null}
 			{state.recommendations.results && state.recommendations.results.length > 0 ? (
-				<div className="rmdb-movie-grid">
+				<div className="container rmdb-movie-grid">
 					<FourColGrid header={'Recommendations'}>
 						{state.recommendations.results
 							.slice(0, 4)
@@ -90,13 +90,7 @@ const Movie = (props) => {
 									clickable={true}
 									id={element.id}
 									type={type}
-									image={
-										element.poster_path ? (
-											`${IMAGE_BASE_URL}${POSTER_SIZE}${element.poster_path}`
-										) : (
-											'./images/no_image.jpg'
-										)
-									}
+									image={getImageUrl(element.poster_path)}
 								/>
 							))}
 					</FourColGrid>

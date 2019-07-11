@@ -1,16 +1,111 @@
-import React from 'react';
-import { IMAGE_BASE_URL, POSTER_SIZE, BACKDROP_SIZE } from '../global/config';
+import React, { useState, useEffect } from 'react';
+
+import { IMAGE_BASE_URL, POSTER_SIZE, BACKDROP_SIZE, API_URL, API_KEY } from '../global/config';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import HeroImage from '../components/HeroImage';
 import Menu from '../components/Menu';
 import FourColGrid from '../components/FourColGrid';
 import MovieThumb from '../components/MovieThumb';
 import Spinner from '../components/Spinner';
-import { useFetchMovies } from './customHooks';
-import './styles/Home.sass';
+import { getImageUrl } from '../global/helpers';
 
 const Home = () => {
-	const [ { state, isLoading, isError, type }, updateItems, changeType ] = useFetchMovies();
+	const [ isLoading, setIsLoading ] = useState(false);
+	const [ isError, setIsError ] = useState(false);
+	const [ type, setType ] = useState('');
+	const [ state, setState ] = useState({
+		movies: [],
+		heroImage: null,
+		currentPage: 0,
+		totalPages: 0,
+		searchTerm: ''
+	});
+
+	const curriedEndpoint = (type) => (loadMore) => (searchTerm) =>
+		`${API_URL}${type}?api_key=${API_KEY}&language=en-US&page=${loadMore
+			? state.currentPage + 1
+			: 1}&query=${searchTerm}`;
+
+	const searchEP = curriedEndpoint(`search/${type}`);
+	const popularEP = curriedEndpoint(`${type}/popular`);
+
+	const fetchItems = async (endpoint) => {
+		setIsError(false);
+		setIsLoading(true);
+
+		try {
+			const result = await (await fetch(endpoint)).json();
+			console.log(result);
+
+			setState((prev) => ({
+				...prev,
+				movies: [ ...prev.movies, ...result.results ],
+				currentPage: result.page,
+				totalPages: result.total_pages
+			}));
+
+			setState((prev) => ({
+				...prev,
+				heroImage: prev.movies[0]
+			}));
+		} catch (error) {
+			setIsError(true);
+		}
+
+		setIsLoading(false);
+	};
+
+	const changeType = (newType) => {
+		setType(newType);
+	};
+
+	const updateItems = (loadMore, searchTerm) => {
+		loadMore = loadMore === undefined ? true : loadMore;
+
+		setState((prev) => ({
+			...prev,
+			movies: !loadMore ? [] : prev.movies,
+			searchTerm
+		}));
+
+		let endpoint = !searchTerm ? popularEP(loadMore)('') : searchEP(loadMore)(searchTerm);
+		console.log(endpoint);
+		fetchItems(endpoint);
+	};
+
+	useEffect(() => {
+		if (localStorage.getItem('HomeState')) {
+			const storageState = JSON.parse(localStorage.getItem('HomeState'));
+			setState({ ...storageState });
+		} else {
+			fetchItems(popularEP(false)(''));
+		}
+	}, []);
+
+	useEffect(
+		() => {
+			localStorage.setItem('HomeState', JSON.stringify(state));
+		},
+		[ state ]
+	);
+
+	useEffect(
+		() => {
+			let newType = type;
+			if (type == '') {
+				newType = localStorage.getItem('HomeType') || 'movie';
+			}
+
+			localStorage.setItem('HomeType', newType);
+
+			if (type == newType) {
+				updateItems(false, state.searchTerm);
+			} else {
+				setType(newType);
+			}
+		},
+		[ type ]
+	);
 
 	return (
 		<div className="rmdb-home">
@@ -24,7 +119,7 @@ const Home = () => {
 					/>
 				</div>
 			) : null}
-			<div className="rmdb-home-grid">
+			<div className="container rmdb-home-grid">
 				<InfiniteScroll
 					dataLength={state.movies.length}
 					next={updateItems}
@@ -50,13 +145,7 @@ const Home = () => {
 									clickable={true}
 									id={element.id}
 									type={type}
-									image={
-										element.poster_path ? (
-											`${IMAGE_BASE_URL}${POSTER_SIZE}${element.poster_path}`
-										) : (
-											'./images/no_image.jpg'
-										)
-									}
+									image={getImageUrl(element.poster_path)}
 								/>
 							);
 						})}

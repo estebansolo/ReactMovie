@@ -1,10 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './styles/Navigation.sass';
 
-const Navigation = ({ movie }) => (
+export default ({ movie }) => (
 	<div className="rmdb-navigation">
-		<div className="rmdb-navigation-content">
+		<div className="container rmdb-navigation-content">
 			<Link to="/">
 				<p>Home</p>
 			</Link>
@@ -13,5 +12,3 @@ const Navigation = ({ movie }) => (
 		</div>
 	</div>
 );
-
-export default Navigation;

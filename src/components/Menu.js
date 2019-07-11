@@ -1,10 +1,9 @@
 import React from 'react';
 import SearchBar from './SearchBar';
-import './styles/Menu.sass';
 
 const Menu = ({ changeType, callback, text, active }) => (
 	<div className="rmdb-menu">
-		<div className="rmdb-menu-content">
+		<div className="container rmdb-menu-content">
 			<div className="rmdb-menu-content-links">
 				<button className={`rmdb-menu-link ${active == 'tv' ? 'active' : ''}`} onClick={() => changeType('tv')}>
 					Series

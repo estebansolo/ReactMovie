@@ -5,14 +5,9 @@
 	padding: 30px 20px
 	animation: animateMovieinfo 1s
 
-@keyframes animateMovieinfo
-	from
-		opacity: 0
-	to
-		opacity: 1
 
 .rmdb-movieinfo-content
-	max-width: 1280px
+	padding: 0
 	min-height: 360px
 	margin: 0 auto
 	background: rgba(0, 0, 0, 0.7)
@@ -36,7 +31,6 @@
 
 .rmdb-movieinfo-text h3
 	font-size: 16px
-	line-height: 0
 	margin-top: 30px
 
 .rmdb-movieinfo-text p
@@ -75,44 +69,3 @@ meter::-webkit-meter-suboptimum-value
 
 meter::-webkit-meter-even-less-good-value
 	background: linear-gradient(to bottom, #ee5f5b) !important
-
-@media screen and (max-width: 1300px)
-	.rmdb-movieinfo-thumb
-		width: 60%
-
-@media screen and (max-width: 1150px)
-	.rmdb-movieinfo-thumb
-		width: 70%
-
-@media screen and (max-width: 1150px)
-	.rmdb-movieinfo-thumb
-		width: 100%
-
-@media screen and (max-width: 1000px)
-	.rmdb-movieinfo-text h1
-		font-size: 32px !important
-
-	.rmdb-movieinfo-thumb
-		display: none
-
-@media screen and (max-width: 700px)
-	.rmdb-movieinfo
-		height: auto
-
-	.rmdb-movieinfo-thumb
-		width: 100% !important
-
-	.fa-film
-		display: none
-
-	.rmdb-movieinfo-text h1
-		font-size: 32px
-
-	.rmdb-movieinfo-text
-		padding: 20px
-
-	.rmdb-movieinfo-text h3
-		margin-top: 20px
-
-	.rmdb-movieinfo-content
-		flex-direction: column

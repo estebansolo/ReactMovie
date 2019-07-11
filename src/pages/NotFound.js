@@ -1,11 +1,10 @@
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
-import './styles/NotFound.sass';
 
 const NotFound = () => (
-	<div className="rmdb-not-found">
+	<div className="d-flex flex-column align-items-center mt-5">
 		<FontAwesome className="rmdb-fa" name="frown-o" size="5x" />
-		<h1>This page does not exists</h1>
+		<h1 className="mt-3">This page does not exists</h1>
 	</div>
 );
 

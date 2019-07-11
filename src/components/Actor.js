@@ -1,6 +1,5 @@
 import React from 'react';
 import { getImageUrl } from '../global/helpers';
-import './styles/Actor.sass';
 
 const Actor = ({ actor }) => (
 	<div className="rmdb-actor">

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import FontAwesome from 'react-fontawesome';
 import { debounce } from 'debounce';
-import './styles/SearchBar.sass';
 
 class SearchBar extends Component {
 	state = {

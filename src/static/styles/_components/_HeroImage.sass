@@ -6,15 +6,9 @@
 	position: relative
 	animation: animateHeroimage 1s
 
-@keyframes animateHeroimage
-	0%
-		opacity: 0
-	100%
-		opacity: 1
-
 .rmdb-heroimage-content
-	max-width: 1280px
-	padding: 20px
+	@include center-between
+	padding: 20px 0
 	margin: 0 auto
 
 .rmdb-heroimage-text
@@ -33,17 +27,3 @@
 .rmdb-heroimage-text p
 	font-size: 22px
 	line-height: 24px
-
-@media screen and (max-width: 770px)
-	.rmdb-heroimage
-		min-height: 350px
-
-	.rmdb-heroimage-text
-		max-width: 100%
-
-	.rmdb-heroimage-text h1
-		font-size: 38px
-
-	.rmdb-heroimage-text p
-		font-size: 16px
-		line-height: 20px

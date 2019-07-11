@@ -1,6 +1,9 @@
 import React from 'react';
-import './styles/Spinner.sass';
 
-const Spinner = () => <div className="loader" />;
-
-export default Spinner;
+export default () => (
+	<div className="d-flex justify-content-center">
+		<div className="spinner-grow text-success">
+			<span className="sr-only">Loading...</span>
+		</div>
+	</div>
+);
