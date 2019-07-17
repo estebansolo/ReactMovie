@@ -1,39 +1,40 @@
-/**
- * Welcome to your Workbox-powered service worker!
- *
- * You'll need to register this file in your web app and you should
- * disable HTTP caching for this file too.
- * See https://goo.gl/nhQhGp
- *
- * The rest of the code is auto-generated. Please don't update this file
- * directly; instead, make changes to your Workbox build configuration
- * and re-run your build process.
- * See https://goo.gl/2aRDsh
- */
-
-importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
-
-importScripts(
-  "/ReactMovie/precache-manifest.47b05d25228ed1e45ddfae75db901da4.js"
-);
-
-self.addEventListener('message', (event) => {
-  if (event.data && event.data.type === 'SKIP_WAITING') {
-    self.skipWaiting();
-  }
-});
-
-workbox.core.clientsClaim();
+importScripts("/precache-manifest.3661b6b21bb7a788ba029e63392f5021.js", "https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 /**
  * The workboxSW.precacheAndRoute() method efficiently caches and responds to
  * requests for URLs in the manifest.
  * See https://goo.gl/S9QRab
  */
+
+// Precarga la app
 self.__precacheManifest = [].concat(self.__precacheManifest || []);
+//workbox.precaching.suppressWarnings();
+
+// Cachear archivos staticos
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
-workbox.routing.registerNavigationRoute(workbox.precaching.getCacheKeyForURL("/ReactMovie/index.html"), {
-  
-  blacklist: [/^\/_/,/\/[^\/]+\.[^\/]+$/],
-});
+// App Shell
+workbox.routing.registerNavigationRoute(workbox.precaching.getCacheKeyForURL('/index.html'));
+
+// La API usa Stale While Revalidate para mayor velocidad
+workbox.routing.registerRoute(/^https?:\/\/api.themoviedb.org\/.*/, new workbox.strategies.NetworkFirst(), 'GET');
+
+workbox.routing.registerRoute(/^http?:\/\/image.tmdb.org\/.*/, new workbox.strategies.NetworkFirst(), 'GET');
+
+// Last fuentes van con Cache First y vencen al mes
+workbox.routing.registerRoute(
+	/^https:\/\/fonts.(?:googleapis|gstatic).com\/(.*)/,
+	new workbox.strategies.CacheFirst({
+		cacheName: 'google-fonts-cache',
+		plugins: [
+			new workbox.expiration.Plugin({
+				maxAgeSeconds: 30 * 24 * 60 * 60
+			})
+		]
+	}),
+	'GET'
+);
+
+// Todo lo demás usa Network First
+workbox.routing.registerRoute(/^https?.*/, new workbox.strategies.NetworkFirst(), 'GET');
+
