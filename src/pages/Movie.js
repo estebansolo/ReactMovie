@@ -19,6 +19,7 @@ const Movie = (props) => {
 	const [ isLoading, setIsLoading ] = useState(false);
 	const [ id, setId ] = useState(props.match.params.id);
 	const [ type, setType ] = useState(props.match.params.type);
+	const [ isError, setIsError ] = useState(false);
 
 	useEffect(
 		() => {
@@ -49,14 +50,14 @@ const Movie = (props) => {
 	const fetchMovie = async (url, key) => {
 		try {
 			const endpoint = `${API_URL}${url}?api_key=${API_KEY}&language=en-US`;
-			let result = await (await fetch(endpoint)).json();
-			console.log(result);
+			let data = await fetch(endpoint);
+			let result = await data.json();
 
 			if (!result.status_code) {
 				setState((prev) => ({ ...prev, [key]: result }));
 			}
 		} catch (error) {
-			console.error('There was an error: ', error);
+			setIsError(true);
 		}
 	};
 
@@ -98,6 +99,13 @@ const Movie = (props) => {
 			) : null}
 			{!state.movie && !isLoading ? <h1>No Movie Found!</h1> : null}
 			{isLoading ? <Spinner /> : null}
+			{isError ? (
+				<div className="rmdb-grid">
+					<h1 style={{ textAlign: 'center' }}>
+						<b>There was a problem with Internet Connection</b>
+					</h1>
+				</div>
+			) : null}
 		</div>
 	);
 };

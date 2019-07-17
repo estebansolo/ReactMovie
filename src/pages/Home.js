@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import { IMAGE_BASE_URL, POSTER_SIZE, BACKDROP_SIZE, API_URL, API_KEY } from '../global/config';
+import { IMAGE_BASE_URL, BACKDROP_SIZE, API_URL, API_KEY } from '../global/config';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import HeroImage from '../components/HeroImage';
 import Menu from '../components/Menu';
@@ -34,20 +34,21 @@ const Home = () => {
 		setIsLoading(true);
 
 		try {
-			const result = await (await fetch(endpoint)).json();
-			console.log(result);
+			const data = await fetch(endpoint);
+			const result = await data.json();
+			if (!result.status_code) {
+				setState((prev) => ({
+					...prev,
+					movies: [ ...prev.movies, ...result.results ],
+					currentPage: result.page,
+					totalPages: result.total_pages
+				}));
 
-			setState((prev) => ({
-				...prev,
-				movies: [ ...prev.movies, ...result.results ],
-				currentPage: result.page,
-				totalPages: result.total_pages
-			}));
-
-			setState((prev) => ({
-				...prev,
-				heroImage: prev.movies[0]
-			}));
+				setState((prev) => ({
+					...prev,
+					heroImage: prev.movies[0]
+				}));
+			}
 		} catch (error) {
 			setIsError(true);
 		}
@@ -60,17 +61,18 @@ const Home = () => {
 	};
 
 	const updateItems = (loadMore, searchTerm) => {
-		loadMore = loadMore === undefined ? true : loadMore;
+		if (type !== '') {
+			loadMore = loadMore === undefined ? true : loadMore;
 
-		setState((prev) => ({
-			...prev,
-			movies: !loadMore ? [] : prev.movies,
-			searchTerm
-		}));
+			setState((prev) => ({
+				...prev,
+				movies: !loadMore ? [] : prev.movies,
+				searchTerm
+			}));
 
-		let endpoint = !searchTerm ? popularEP(loadMore)('') : searchEP(loadMore)(searchTerm);
-		console.log(endpoint);
-		fetchItems(endpoint);
+			let endpoint = !searchTerm ? popularEP(loadMore)('') : searchEP(loadMore)(searchTerm);
+			fetchItems(endpoint);
+		}
 	};
 
 	useEffect(() => {
@@ -78,7 +80,7 @@ const Home = () => {
 			const storageState = JSON.parse(localStorage.getItem('HomeState'));
 			setState({ ...storageState });
 		} else {
-			fetchItems(popularEP(false)(''));
+			if (type !== '') fetchItems(popularEP(false)(''));
 		}
 	}, []);
 
@@ -152,6 +154,13 @@ const Home = () => {
 					</FourColGrid>
 				</InfiniteScroll>
 				{isLoading ? <Spinner /> : null}
+				{isError ? (
+					<div className="rmdb-grid">
+						<h1 style={{ textAlign: 'center' }}>
+							<b>There was a problem with Internet Connection</b>
+						</h1>
+					</div>
+				) : null}
 			</div>
 		</div>
 	);
