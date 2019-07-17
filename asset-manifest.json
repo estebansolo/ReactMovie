@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/static/css/main.8be9f5ff.chunk.css",
-    "main.js": "/static/js/main.30be4a14.chunk.js",
-    "main.js.map": "/static/js/main.30be4a14.chunk.js.map",
-    "runtime~main.js": "/static/js/runtime~main.a8a9905a.js",
-    "runtime~main.js.map": "/static/js/runtime~main.a8a9905a.js.map",
-    "static/js/2.dda399fb.chunk.js": "/static/js/2.dda399fb.chunk.js",
-    "static/js/2.dda399fb.chunk.js.map": "/static/js/2.dda399fb.chunk.js.map",
-    "index.html": "/index.html",
-    "precache-manifest.3661b6b21bb7a788ba029e63392f5021.js": "/precache-manifest.3661b6b21bb7a788ba029e63392f5021.js",
-    "precache-manifest.5211a4bc23368899506bbfb4e6e08c2a.js": "/precache-manifest.5211a4bc23368899506bbfb4e6e08c2a.js",
-    "service-worker.js": "/service-worker.js",
-    "static/css/main.8be9f5ff.chunk.css.map": "/static/css/main.8be9f5ff.chunk.css.map",
-    "static/media/rmdb_logo.png": "/static/media/rmdb_logo.08494abf.png"
+    "main.css": "/ReactMovie/static/css/main.8be9f5ff.chunk.css",
+    "main.js": "/ReactMovie/static/js/main.e651edc7.chunk.js",
+    "main.js.map": "/ReactMovie/static/js/main.e651edc7.chunk.js.map",
+    "runtime~main.js": "/ReactMovie/static/js/runtime~main.8ef7d706.js",
+    "runtime~main.js.map": "/ReactMovie/static/js/runtime~main.8ef7d706.js.map",
+    "static/js/2.dda399fb.chunk.js": "/ReactMovie/static/js/2.dda399fb.chunk.js",
+    "static/js/2.dda399fb.chunk.js.map": "/ReactMovie/static/js/2.dda399fb.chunk.js.map",
+    "index.html": "/ReactMovie/index.html",
+    "precache-manifest.1b8d8d17364d0b41300f3832f14470a2.js": "/ReactMovie/precache-manifest.1b8d8d17364d0b41300f3832f14470a2.js",
+    "precache-manifest.6545828be6034d851f5487523a655262.js": "/ReactMovie/precache-manifest.6545828be6034d851f5487523a655262.js",
+    "service-worker.js": "/ReactMovie/service-worker.js",
+    "static/css/main.8be9f5ff.chunk.css.map": "/ReactMovie/static/css/main.8be9f5ff.chunk.css.map",
+    "static/media/rmdb_logo.png": "/ReactMovie/static/media/rmdb_logo.08494abf.png"
   }
 }
