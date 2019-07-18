@@ -15,9 +15,24 @@ workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 workbox.routing.registerNavigationRoute(workbox.precaching.getCacheKeyForURL('/index.html'));
 
 // La API usa Stale While Revalidate para mayor velocidad
-workbox.routing.registerRoute(/^https?:\/\/api.themoviedb.org\/.*/, new workbox.strategies.NetworkFirst(), 'GET');
+workbox.routing.registerRoute(
+	/^https?:\/\/api.themoviedb.org\/.*/,
+	new workbox.strategies.StaleWhileRevalidate(),
+	'GET'
+);
 
-workbox.routing.registerRoute(/^http?:\/\/image.tmdb.org\/.*/, new workbox.strategies.NetworkFirst(), 'GET');
+workbox.routing.registerRoute(
+	/^https?:\/\/image.tmdb.org\/.*/,
+	new workbox.strategies.CacheFirst({
+		cacheName: 'tmdb-images-cache',
+		plugins: [
+			new workbox.expiration.Plugin({
+				maxAgeSeconds: 7 * 24 * 60 * 60
+			})
+		]
+	}),
+	'GET'
+);
 
 // Last fuentes van con Cache First y vencen al mes
 workbox.routing.registerRoute(

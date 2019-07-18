@@ -94,13 +94,13 @@ const Home = () => {
 	useEffect(
 		() => {
 			let newType = type;
-			if (type == '') {
+			if (type === '') {
 				newType = localStorage.getItem('HomeType') || 'movie';
 			}
 
 			localStorage.setItem('HomeType', newType);
 
-			if (type == newType) {
+			if (type === newType) {
 				updateItems(false, state.searchTerm);
 			} else {
 				setType(newType);

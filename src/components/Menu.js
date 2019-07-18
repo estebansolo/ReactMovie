@@ -5,11 +5,14 @@ const Menu = ({ changeType, callback, text, active }) => (
 	<div className="rmdb-menu">
 		<div className="container rmdb-menu-content">
 			<div className="rmdb-menu-content-links">
-				<button className={`rmdb-menu-link ${active == 'tv' ? 'active' : ''}`} onClick={() => changeType('tv')}>
+				<button
+					className={`rmdb-menu-link ${active === 'tv' ? 'active' : ''}`}
+					onClick={() => changeType('tv')}
+				>
 					Series
 				</button>
 				<button
-					className={`rmdb-menu-link ${active == 'movie' ? 'active' : ''}`}
+					className={`rmdb-menu-link ${active === 'movie' ? 'active' : ''}`}
 					onClick={() => changeType('movie')}
 				>
 					Peliculas

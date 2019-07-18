@@ -1,5 +1,5 @@
 import React from 'react';
-import { IMAGE_BASE_URL, POSTER_SIZE, BACKDROP_SIZE } from '../global/config';
+import { IMAGE_BASE_URL, BACKDROP_SIZE } from '../global/config';
 import { getImageUrl } from '../global/helpers';
 import MovieThumb from './MovieThumb';
 
@@ -15,7 +15,7 @@ const MovieInfo = ({ movie, directors }) => (
 				<MovieThumb image={getImageUrl(movie.poster_path)} clickable={false} />
 			</div>
 			<div className="rmdb-movieinfo-text">
-				<h1>{movie.title}</h1>
+				<h1>{movie.title || movie.name}</h1>
 				<h3>PLOT</h3>
 				<p>{movie.overview}</p>
 				<h3>IMDB RATING</h3>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { API_URL, API_KEY, IMAGE_BASE_URL, POSTER_SIZE } from '../global/config';
+import { API_URL, API_KEY } from '../global/config';
 import { getImageUrl } from '../global/helpers';
 import Navigation from '../components/Navigation';
 import MovieInfo from '../components/MovieInfo';
@@ -61,11 +61,30 @@ const Movie = (props) => {
 		}
 	};
 
+	const share = (e) => {
+		e.preventDefault();
+
+		if (!navigator.share) return;
+
+		navigator
+			.share({
+				title: state.movie.title || state.movie.name,
+				text: `Information about ${state.movie.title}`,
+				url: document.location.href
+			})
+			.then(() => {
+				alert('Contenido Compartido');
+			})
+			.catch((error) => {
+				alert('Error');
+			});
+	};
+
 	return (
 		<div className="rmdb-movie">
 			{state.movie && state.actors.cast && !isLoading ? (
 				<div>
-					<Navigation movie={state.movie.title || state.movie.name} />
+					<Navigation share={share} movie={state.movie.title || state.movie.name} />
 					<MovieInfo
 						movie={state.movie}
 						directors={state.actors.crew.filter((member) => member.job === 'Director')}
