@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/ReactMovie/static/css/main.8be9f5ff.chunk.css",
-    "main.js": "/ReactMovie/static/js/main.e651edc7.chunk.js",
-    "main.js.map": "/ReactMovie/static/js/main.e651edc7.chunk.js.map",
+    "main.css": "/ReactMovie/static/css/main.5c72a562.chunk.css",
+    "main.js": "/ReactMovie/static/js/main.602d35ae.chunk.js",
+    "main.js.map": "/ReactMovie/static/js/main.602d35ae.chunk.js.map",
     "runtime~main.js": "/ReactMovie/static/js/runtime~main.8ef7d706.js",
     "runtime~main.js.map": "/ReactMovie/static/js/runtime~main.8ef7d706.js.map",
     "static/js/2.dda399fb.chunk.js": "/ReactMovie/static/js/2.dda399fb.chunk.js",
     "static/js/2.dda399fb.chunk.js.map": "/ReactMovie/static/js/2.dda399fb.chunk.js.map",
     "index.html": "/ReactMovie/index.html",
-    "precache-manifest.1b8d8d17364d0b41300f3832f14470a2.js": "/ReactMovie/precache-manifest.1b8d8d17364d0b41300f3832f14470a2.js",
-    "precache-manifest.6545828be6034d851f5487523a655262.js": "/ReactMovie/precache-manifest.6545828be6034d851f5487523a655262.js",
+    "precache-manifest.2f87f97b89491bdabc16ba82b9b28294.js": "/ReactMovie/precache-manifest.2f87f97b89491bdabc16ba82b9b28294.js",
+    "precache-manifest.667ac3370a14006c5415ec9e246c1120.js": "/ReactMovie/precache-manifest.667ac3370a14006c5415ec9e246c1120.js",
     "service-worker.js": "/ReactMovie/service-worker.js",
-    "static/css/main.8be9f5ff.chunk.css.map": "/ReactMovie/static/css/main.8be9f5ff.chunk.css.map",
+    "static/css/main.5c72a562.chunk.css.map": "/ReactMovie/static/css/main.5c72a562.chunk.css.map",
     "static/media/rmdb_logo.png": "/ReactMovie/static/media/rmdb_logo.08494abf.png"
   }
 }
