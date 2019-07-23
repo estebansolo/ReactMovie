@@ -72,12 +72,8 @@ const Movie = (props) => {
 				text: `Information about ${state.movie.title}`,
 				url: document.location.href
 			})
-			.then(() => {
-				alert('Contenido Compartido');
-			})
-			.catch((error) => {
-				alert('Error');
-			});
+			.then(() => {})
+			.catch((error) => {});
 	};
 
 	return (
